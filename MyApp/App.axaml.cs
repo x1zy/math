@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Rendering;
 
 namespace MyApp;
 
@@ -19,5 +20,5 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
-    }
+    }    
 }

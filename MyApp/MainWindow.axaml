@@ -2,21 +2,254 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+        mc:Ignorable="d" 
+        d:DesignWidth="1080" 
+        d:DesignHeight="1080"
         x:Class="MyApp.MainWindow"
         Title="MyApp">
-    <Grid> 
-        <Grid.ColumnDefinitions> 
-            <ColumnDefinition Width="*" /> 
-            <ColumnDefinition Width="500" /> <!-- Ширина правой панели --> 
-        </Grid.ColumnDefinitions> 
-        <StackPanel Margin="20"> 
-            <TextBlock Text="Метод половинчатого деления" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" /> 
-            <TextBlock Text="Уравнение:"/>
-            <TextBox Width="300" HorizontalAlignment="Left" Margin="0 10 0 0"> 
-            <TextBlock Text="Значение A:"/>
-            <TextBox Width="300" HorizontalAlignment="Left" Margin="0 10 0 0">  
-            <Button Content="Кнопка1" Width="150" Height="30" Margin="0,10,0,10"/> 
-        </StackPanel> 
-    </Grid> 
+
+    <!-- Определение Стилизации -->
+    <Window.Styles>
+        <!-- Стили для Button -->
+        <Style Selector="Button">
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+        <!-- Стиль для Button при наведении курсора -->
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="White"/> <!-- SteelBlue или желаемый тёмный оттенок -->
+            <!-- Foreground остаётся White, чтобы текст не менял цвет -->
+        </Style>
+        
+        <!-- Стили для TextBox -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Opacity" Value="1"/> <!-- Обеспечивает полную непрозрачность -->
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        
+        <!-- Стиль для TextBox при наведении курсора (сохранение непрозрачности) -->
+        <Style Selector="TextBox:pointerover">
+            <Setter Property="Opacity" Value="1"/> <!-- Сохраняет полную непрозрачность -->
+            <!-- Дополнительно можно изменить цвет рамки или фон при наведении -->
+        </Style>
+    </Window.Styles>
+
+    <!-- Фон окна -->
+    <Window.Background>
+        <ImageBrush Source="C:/Users/Mi/Desktop/Projects/half1/MyApp/img/bg.png" Stretch="UniformToFill"/> 
+    </Window.Background>
+    
+    <!-- Основная разметка Grid -->
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700" />
+            <ColumnDefinition Width="*" /> <!-- Ширина правой панели -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая панель -->
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock Text="Метод половинчатого деления" 
+                       FontWeight="Bold" 
+                       FontSize="40" 
+                       Margin="0,0,0,10" 
+                       Foreground="White"/>
+            
+            <!-- Пример размещения TextBlock и TextBox горизонтально -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/> <!-- Ширина для текста -->
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+        
+                    <ColumnDefinition Width="*"/>   <!-- Авто для TextBox -->
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Уравнение:" 
+                           Foreground="White" 
+                           FontSize="24" 
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           />
+                           
+                <!-- Coefficient for x^3 -->
+                <TextBox Width="40" 
+                        FontSize="24" 
+                        VerticalAlignment="Center" 
+                        Grid.Column="1"
+                        Margin="0 0 20 0"
+                        />
+
+                <!-- Label for x^3 -->
+                <TextBlock Text="x³ +" 
+                        FontSize="28" 
+                        VerticalAlignment="Center" 
+                        Grid.Column="2"
+                        Foreground="White"
+                        Margin="0 0 20 0" />
+
+            <!-- Coefficient for x^2 -->
+            <TextBox Width="40" 
+                    FontSize="28" 
+                    VerticalAlignment="Center" 
+                    Grid.Column="3" 
+                    Text="0" 
+                    Margin="0 0 20 0"/>
+
+            <!-- Label for x^2 -->
+            <TextBlock Text="x² +" 
+                    FontSize="28" 
+                    VerticalAlignment="Center" 
+                    Grid.Column="4"
+                    Foreground="White" 
+                    Margin="0 0 20 0"/>
+
+            <!-- Coefficient for x -->
+            <TextBox Width="40" 
+                    FontSize="20" 
+                    VerticalAlignment="Center" 
+                    Grid.Column="5" 
+                    Text="2" 
+                    Margin="0 0 20 0"/>
+
+            <!-- Label for x -->
+            <TextBlock Text="x +" 
+                    FontSize="28" 
+                    VerticalAlignment="Center" 
+                    Grid.Column="6"
+                    Foreground="White" />
+
+            <!-- Constant term -->
+            <TextBox Width="40" 
+                    FontSize="20" 
+                    VerticalAlignment="Center" 
+                    Grid.Column="7" 
+                    Text="-7" 
+                    />
+            </Grid>
+
+            <!-- Аналогично для других пар TextBlock и TextBox -->
+            <TextBlock Text="Интервал изоляции:" 
+                       FontWeight="Bold" 
+                       Margin="0,20,0,10" 
+                       FontSize="22" 
+                       Foreground="White"/>
+            
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/> <!-- Ширина для текста -->
+                    <ColumnDefinition Width="*"/>    <!-- Авто для TextBox -->
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Значение A: " 
+                           FontSize="18" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Width="300" Margin="10,0,0,0"/>
+            </Grid>
+            
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Значение B:" 
+                           FontWeight="Bold" 
+                           FontSize="18" 
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Width="300" Margin="10,0,0,0"/>
+            </Grid>
+            
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Точность:" 
+                           FontWeight="Bold" 
+                           FontSize="18" 
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Width="300" Margin="10,0,0,0"/>
+            </Grid>
+            
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Ответ:" 
+                           FontWeight="Bold" 
+                           FontSize="18" 
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           />
+                <TextBlock Grid.Column="1" Width="100" Margin="90,0,0,0" Background="White" HorizontalAlignment="Left"/>
+            </Grid>
+            
+            <Button Content="Решить" 
+                    FontSize="18" 
+                    Width="150" 
+                    Height="50" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,20,0,0"
+                    Opacity="1"/>
+        </StackPanel>
+
+        <!-- Правая панель -->
+        <Grid Grid.Column="1">
+            <TextBlock Text="Шаги решения:" 
+                       FontWeight="Bold" 
+                       FontSize="32" 
+                       Foreground="White"
+                       Margin="0,0,0,10"/>
+            <ScrollViewer Background="White" Name="Scroll" Margin="0 50 0 0" HorizontalScrollBarVisibility="Auto">
+                <StackPanel HorizontalAlignment="Center" 
+                            VerticalAlignment="Top" 
+                            Margin="20,0,0,0">
+                    <!-- Решения будут добавлены динамически здесь -->
+                    <TextBlock Text="Шаг 1: " FontSize="32" FontWeight="Bold" Margin="0 10 0 0"/>
+                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
+                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
+                    <TextBlock FontSize="24" Text="f(ξ) = &lt; "/>
+
+                    <TextBlock Text="Шаг 2: " FontSize="32" FontWeight="Bold" Margin="0 30 0 0"/>
+                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
+                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
+                    <TextBlock FontSize="24" Text="f(ξ) = &lt; "/>
+
+                    <TextBlock Text="Шаг 3: " FontSize="32" FontWeight="Bold" Margin="0 30 0 0"/>
+                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
+                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
+                    <TextBlock FontSize="24" Text="f(ξ) = &lt; "/>
+                    <TextBlock Text="Шаг 4: " FontSize="32" FontWeight="Bold" Margin="0 30 0 0"/>
+                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
+                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
+                    <TextBlock FontSize="24" Text="f(ξ) = &gt; "/>
+                    
+                </StackPanel>
+            </ScrollViewer> 
+        </Grid>
+    </Grid>
 </Window>
