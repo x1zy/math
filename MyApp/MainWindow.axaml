@@ -6,9 +6,10 @@
         d:DesignWidth="1080" 
         d:DesignHeight="1080"
         x:Class="MyApp.MainWindow"
-        Title="MyApp">
+        Title="MyApp"
+        Background="Gray">
 
-    <!-- Определение Стилизации -->
+
     <Window.Styles>
         <!-- Стили для Button -->
         <Style Selector="Button">
@@ -47,9 +48,6 @@
     </Window.Styles>
 
     <!-- Фон окна -->
-    <Window.Background>
-        <ImageBrush Source="C:/Users/Mi/Desktop/Projects/half1/MyApp/img/bg.png" Stretch="UniformToFill"/> 
-    </Window.Background>
     
     <!-- Основная разметка Grid -->
     <Grid Margin="20">
@@ -89,7 +87,8 @@
                            />
                            
                 <!-- Coefficient for x^3 -->
-                <TextBox Width="40" 
+                <TextBox Name ="Coefficient_3 "
+                        Width="40" 
                         FontSize="24" 
                         VerticalAlignment="Center" 
                         Grid.Column="1"
@@ -105,11 +104,12 @@
                         Margin="0 0 20 0" />
 
             <!-- Coefficient for x^2 -->
-            <TextBox Width="40" 
-                    FontSize="28" 
+            <TextBox Width="40"
+                    Name="First_Coefficient" 
+                    FontSize="24" 
                     VerticalAlignment="Center" 
                     Grid.Column="3" 
-                    Text="0" 
+
                     Margin="0 0 20 0"/>
 
             <!-- Label for x^2 -->
@@ -121,11 +121,12 @@
                     Margin="0 0 20 0"/>
 
             <!-- Coefficient for x -->
-            <TextBox Width="40" 
-                    FontSize="20" 
+            <TextBox Name="Coefficient_x" 
+                    Width="40" 
+                    FontSize="24" 
                     VerticalAlignment="Center" 
                     Grid.Column="5" 
-                    Text="2" 
+                     
                     Margin="0 0 20 0"/>
 
             <!-- Label for x -->
@@ -136,11 +137,12 @@
                     Foreground="White" />
 
             <!-- Constant term -->
-            <TextBox Width="40" 
-                    FontSize="20" 
+            <TextBox Name = "Constant"
+                    Width="40" 
+                    FontSize="24" 
                     VerticalAlignment="Center" 
                     Grid.Column="7" 
-                    Text="-7" 
+
                     />
             </Grid>
 
@@ -157,12 +159,13 @@
                     <ColumnDefinition Width="*"/>    <!-- Авто для TextBox -->
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Значение A: " 
+                <TextBlock 
+                            Text="Значение A: " 
                            FontSize="18" 
                            FontWeight="Bold" 
                            Foreground="White"
                            VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" Width="300" Margin="10,0,0,0"/>
+                <TextBox Name="ValueA" Grid.Column="1" Width="300" Margin="10,0,0,0"/>
             </Grid>
             
             <Grid Margin="0,0,0,20">
@@ -176,7 +179,7 @@
                            FontSize="18" 
                            Foreground="White"
                            VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" Width="300" Margin="10,0,0,0"/>
+                <TextBox  Name="ValueB" Grid.Column="1" Width="300" Margin="10,0,0,0"/>
             </Grid>
             
             <Grid Margin="0,0,0,20">
@@ -190,7 +193,7 @@
                            FontSize="18" 
                            Foreground="White"
                            VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" Width="300" Margin="10,0,0,0"/>
+                <TextBox Name="Precision" Grid.Column="1" Width="300" Margin="10,0,0,0"/>
             </Grid>
             
             <Grid Margin="0,0,0,20">
@@ -205,10 +208,11 @@
                            Foreground="White"
                            VerticalAlignment="Center"
                            />
-                <TextBlock Grid.Column="1" Width="100" Margin="90,0,0,0" Background="White" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="Answer" Grid.Column="1" Width="100" Margin="90,0,0,0" Background="White" HorizontalAlignment="Left"/>
             </Grid>
             
-            <Button Content="Решить" 
+            <Button Click = "MainButton_Click"
+                    Content="Решить" 
                     FontSize="18" 
                     Width="150" 
                     Height="50" 
@@ -225,28 +229,12 @@
                        Foreground="White"
                        Margin="0,0,0,10"/>
             <ScrollViewer Background="White" Name="Scroll" Margin="0 50 0 0" HorizontalScrollBarVisibility="Auto">
-                <StackPanel HorizontalAlignment="Center" 
+                <StackPanel Name="Steps_Solve"
+                             HorizontalAlignment="Center" 
                             VerticalAlignment="Top" 
                             Margin="20,0,0,0">
-                    <!-- Решения будут добавлены динамически здесь -->
-                    <TextBlock Text="Шаг 1: " FontSize="32" FontWeight="Bold" Margin="0 10 0 0"/>
-                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
-                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
-                    <TextBlock FontSize="24" Text="f(ξ) = &lt; "/>
 
-                    <TextBlock Text="Шаг 2: " FontSize="32" FontWeight="Bold" Margin="0 30 0 0"/>
-                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
-                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
-                    <TextBlock FontSize="24" Text="f(ξ) = &lt; "/>
 
-                    <TextBlock Text="Шаг 3: " FontSize="32" FontWeight="Bold" Margin="0 30 0 0"/>
-                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
-                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
-                    <TextBlock FontSize="24" Text="f(ξ) = &lt; "/>
-                    <TextBlock Text="Шаг 4: " FontSize="32" FontWeight="Bold" Margin="0 30 0 0"/>
-                    <TextBlock FontSize="24" Text="Новый интервал ξ ∊ [;]" />
-                    <TextBlock FontSize="24" Text="Текущее приближение ξ = "/>
-                    <TextBlock FontSize="24" Text="f(ξ) = &gt; "/>
                     
                 </StackPanel>
             </ScrollViewer> 
