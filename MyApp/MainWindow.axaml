@@ -6,7 +6,7 @@
         d:DesignWidth="1080" 
         d:DesignHeight="1080"
         x:Class="MyApp.MainWindow"
-        Title="MyApp"
+        Title="MathApp"
         Background="Gray">
 
 
@@ -47,8 +47,7 @@
         </Style>
     </Window.Styles>
 
-    <!-- Фон окна -->
-    
+
     <!-- Основная разметка Grid -->
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
@@ -58,7 +57,7 @@
 
         <!-- Левая панель -->
         <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock Text="Метод половинчатого деления" 
+            <TextBlock Text="Метод половинного деления" 
                        FontWeight="Bold" 
                        FontSize="40" 
                        Margin="0,0,0,10" 
@@ -68,6 +67,8 @@
             <Grid Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/> <!-- Ширина для текста -->
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="50" />
@@ -93,6 +94,7 @@
                         VerticalAlignment="Center" 
                         Grid.Column="1"
                         Margin="0 0 20 0"
+                        TextInput="OnTextInputHandler"
                         />
 
                 <!-- Label for x^3 -->
@@ -109,7 +111,7 @@
                     FontSize="24" 
                     VerticalAlignment="Center" 
                     Grid.Column="3" 
-
+                    TextInput="OnTextInputHandler"
                     Margin="0 0 20 0"/>
 
             <!-- Label for x^2 -->
@@ -126,7 +128,7 @@
                     FontSize="24" 
                     VerticalAlignment="Center" 
                     Grid.Column="5" 
-                     
+                     TextInput="OnTextInputHandler"
                     Margin="0 0 20 0"/>
 
             <!-- Label for x -->
@@ -135,6 +137,12 @@
                     VerticalAlignment="Center" 
                     Grid.Column="6"
                     Foreground="White" />
+            <TextBlock Text=" = 0" 
+                    FontSize="28" 
+                    VerticalAlignment="Center" 
+                    Grid.Column="8"
+                    Foreground="White" />
+                    
 
             <!-- Constant term -->
             <TextBox Name = "Constant"
@@ -142,7 +150,7 @@
                     FontSize="24" 
                     VerticalAlignment="Center" 
                     Grid.Column="7" 
-
+                    TextInput="OnTextInputHandler"
                     />
             </Grid>
 
@@ -155,12 +163,12 @@
             
             <Grid Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/> <!-- Ширина для текста -->
+                    <ColumnDefinition Width="300"/> <!-- Ширина для текста -->
                     <ColumnDefinition Width="*"/>    <!-- Авто для TextBox -->
                 </Grid.ColumnDefinitions>
 
                 <TextBlock 
-                            Text="Значение A: " 
+                            Text="Левое значения интервала ξ: " 
                            FontSize="18" 
                            FontWeight="Bold" 
                            Foreground="White"
@@ -170,11 +178,11 @@
             
             <Grid Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Значение B:" 
+                <TextBlock Text="Правое значениe интервала ξ:" 
                            FontWeight="Bold" 
                            FontSize="18" 
                            Foreground="White"
@@ -184,7 +192,7 @@
             
             <Grid Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -193,13 +201,15 @@
                            FontSize="18" 
                            Foreground="White"
                            VerticalAlignment="Center"/>
-                <TextBox Name="Precision" Grid.Column="1" Width="300" Margin="10,0,0,0"/>
+                <TextBox Name="Precision" Grid.Column="1" Width="300" Margin="10,0,0,0" TextInput="OnTextInputHandler"/>
             </Grid>
             
             <Grid Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="225"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Ответ:" 
@@ -208,7 +218,8 @@
                            Foreground="White"
                            VerticalAlignment="Center"
                            />
-                <TextBlock x:Name="Answer" Grid.Column="1" Width="100" Margin="90,0,0,0" Background="White" HorizontalAlignment="Left"/>
+                <TextBlock Name="Answer" Grid.Column="1" Width="300" Margin="130,0,0,0" Foreground="Black" Background="White" HorizontalAlignment="Left" Padding = "60 0 0 0"
+                />
             </Grid>
             
             <Button Click = "MainButton_Click"

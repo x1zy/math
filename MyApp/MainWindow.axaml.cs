@@ -36,11 +36,26 @@ public partial class MainWindow : Window
         }
         catch (FormatException)
         {
-            AppendStep("Ошибка: Неверный формат данных. Убедитесь, что все поля заполнены корректно.");
+            AppendStep("Ошибка: Неверный формат данных.");
         }
         catch (Exception ex)
         {
             AppendStep($"Произошла ошибка: {ex.Message}");
+        }
+    }
+    private void OnTextInputHandler(object? sender, Avalonia.Input.TextInputEventArgs e)
+    {
+        // Разрешенные символы: цифры, точка, запятая и минус
+        string allowedChars = "0123456789.,-";
+        
+        // Проверяем, что введенный символ разрешен
+        if (!string.IsNullOrEmpty(e.Text) && allowedChars.Contains(e.Text))
+        {
+            e.Handled = false; // Разрешаем ввод
+        }
+        else
+        {
+            e.Handled = true; // Запрещаем ввод
         }
     }
 
@@ -88,9 +103,10 @@ public partial class MainWindow : Window
         Steps_Solve.Children.Add(functionValueText);
 
         // Если это последний шаг, выводим результат в TextBlock Answer
-        if (Math.Abs(B - A) < E)
+// Если это последний шаг, выводим результат в TextBlock Answer
+        if (Math.Abs(B - A) > E)
         {
-            Answer.Text = $"Ответ:  {xi}";
+            Answer.Text = $"x = {xi}";
         }
     }
 
